@@ -2,11 +2,886 @@
 <html lang="de">
 <head>
 <meta charset="UTF-8">
-<meta http-equiv="refresh" content="0;url=https://immowert.onrender.com">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sam · Klar denken. Gut entscheiden.</title>
-<script>window.location.replace("https://immowert.onrender.com");</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy:       #1C2540;
+  --navy2:      #253060;
+  --bg:         #F2F4F8;
+  --bg2:        #E8EBF2;
+  --white:      #FFFFFF;
+  --text:       #1C2540;
+  --mid:        #5A6080;
+  --light:      #9AA0B8;
+  --line:       #DDE1EC;
+  --immo:       #4A7CDB;
+  --immo-bg:    #EBF1FC;
+  --gastro:     #2EB87A;
+  --gastro-bg:  #E4F7EF;
+  --steuergehilfe:    #D4736A;
+  --steuergehilfe-bg: #FDF0EE;
+  --fewo:             #7B8FA8;
+  --fewo-bg:          #EEF1F5;
+  --hausverwalter:    #9B5EE8;
+  --hausverwalter-bg: #F3EDFB;
+  --rose:       #E8A0A8;
+  --teal-c:     #7EB8C8;
+  --green-c:    #82C49A;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-weight:400;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;height:64px;background:var(--navy);display:flex;align-items:center;justify-content:space-between;padding:0 40px;transition:box-shadow 0.3s;}
+nav.scrolled{box-shadow:0 4px 24px rgba(0,0,0,0.3);}
+.nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none;}
+.nav-logo-text{font-family:'Syne',sans-serif;font-size:18px;font-weight:700;color:white;letter-spacing:-0.3px;}
+.nav-logo-text span{color:rgba(255,255,255,.45);font-weight:400;font-size:14px;}
+.nav-links{display:flex;align-items:center;gap:32px;list-style:none;}
+.nav-links a{font-size:13px;font-weight:400;color:rgba(255,255,255,0.5);text-decoration:none;transition:color 0.2s;}
+.nav-links a:hover{color:white;}
+.nav-cta{background:rgba(255,255,255,.12)!important;color:white!important;padding:8px 20px;border-radius:6px;font-weight:500!important;border:1px solid rgba(255,255,255,.2)!important;}
+.nav-cta:hover{background:rgba(255,255,255,.2)!important;color:white!important;}
+
+/* HERO */
+.hero{min-height:100vh;background:var(--navy);display:grid;grid-template-columns:1fr 1fr;padding-top:64px;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);background-size:60px 60px;pointer-events:none;}
+.hero-left{padding:100px 56px 80px 80px;display:flex;flex-direction:column;justify-content:center;position:relative;z-index:2;}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(74,124,219,0.15);border:1px solid rgba(74,124,219,0.3);color:#7AAFF0;font-size:11px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;padding:6px 14px;border-radius:20px;margin-bottom:32px;width:fit-content;opacity:0;animation:fadeUp 0.6s ease 0.1s forwards;}
+.badge-dot{width:6px;height:6px;border-radius:50%;background:var(--immo);animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.5;transform:scale(0.8);}}
+.hero-h{font-family:'Syne',sans-serif;font-size:clamp(44px,5.5vw,74px);font-weight:800;line-height:1.0;letter-spacing:-0.03em;color:white;margin-bottom:28px;opacity:0;animation:fadeUp 0.7s ease 0.2s forwards;}
+.hero-h .c1{color:var(--immo);}
+.hero-sub{font-size:16px;font-weight:300;line-height:1.75;color:rgba(255,255,255,0.48);max-width:440px;margin-bottom:48px;opacity:0;animation:fadeUp 0.7s ease 0.35s forwards;}
+.hero-actions{display:flex;align-items:center;gap:16px;opacity:0;animation:fadeUp 0.7s ease 0.5s forwards;}
+.btn-p{background:var(--immo);color:white;font-family:'Syne',sans-serif;font-size:14px;font-weight:600;padding:14px 28px;border:none;border-radius:8px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:transform 0.2s,opacity 0.2s;}
+.btn-p:hover{transform:translateY(-2px);opacity:0.9;}
+.btn-g{font-size:14px;font-weight:400;color:rgba(255,255,255,0.45);text-decoration:none;display:inline-flex;align-items:center;gap:6px;transition:color 0.2s;}
+.btn-g:hover{color:white;}
+
+/* HERO RIGHT — mockup */
+.hero-right{display:flex;align-items:center;justify-content:center;padding:80px 60px 80px 32px;position:relative;z-index:2;opacity:0;animation:fadeIn 1s ease 0.4s forwards;}
+.mockup{width:100%;max-width:460px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:16px;overflow:hidden;box-shadow:0 24px 80px rgba(0,0,0,0.4);}
+.m-bar{background:rgba(255,255,255,0.06);border-bottom:1px solid rgba(255,255,255,0.06);padding:12px 16px;display:flex;align-items:center;gap:7px;}
+.md{width:8px;height:8px;border-radius:50%;}
+.md:nth-child(1){background:#FF6058;}
+.md:nth-child(2){background:#FFBD2E;}
+.md:nth-child(3){background:#28CA41;}
+.m-title{font-size:11px;color:rgba(255,255,255,0.28);margin-left:8px;}
+.m-body{padding:20px;}
+.m-progress{display:flex;gap:4px;margin-bottom:18px;}
+.mp{flex:1;height:3px;border-radius:2px;background:rgba(255,255,255,0.07);}
+.mp.done{background:var(--immo);}
+.mp.cur{background:rgba(74,124,219,0.45);}
+.m-lbl{font-size:10px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,0.25);margin-bottom:12px;}
+.m-scenarios{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:14px;}
+.ms{border-radius:8px;padding:12px 10px;border:1px solid transparent;}
+.ms-w{background:rgba(232,160,168,0.1);border-color:rgba(232,160,168,0.2);}
+.ms-s{background:rgba(126,184,200,0.1);border-color:rgba(126,184,200,0.2);}
+.ms-e{background:rgba(130,196,154,0.1);border-color:rgba(130,196,154,0.2);}
+.ms-l{font-size:9px;font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-bottom:5px;}
+.ms-w .ms-l{color:var(--rose);}
+.ms-s .ms-l{color:var(--teal-c);}
+.ms-e .ms-l{color:var(--green-c);}
+.ms-v{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;color:white;}
+.ms-sub{font-size:10px;color:rgba(255,255,255,0.3);margin-top:2px;}
+.m-cf{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:8px;padding:12px;}
+.cf-l{font-size:10px;font-weight:500;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,0.25);margin-bottom:10px;}
+.cf-r{display:flex;align-items:center;justify-content:space-between;padding:4px 0;}
+.cf-sc{display:flex;align-items:center;gap:6px;font-size:12px;color:rgba(255,255,255,0.45);}
+.cf-dot{width:6px;height:6px;border-radius:50%;}
+.cf-pos{font-size:13px;font-weight:600;color:#2EB87A;}
+.cf-neg{font-size:13px;font-weight:600;color:#E07A7A;}
+
+/* STRIP */
+.strip{background:var(--navy2);padding:0 80px;display:flex;align-items:stretch;border-bottom:1px solid rgba(255,255,255,0.06);}
+.si{padding:28px 48px 28px 0;display:flex;align-items:center;gap:14px;flex-shrink:0;}
+.si+.si{padding-left:48px;border-left:1px solid rgba(255,255,255,0.08);}
+.sn{font-family:'Syne',sans-serif;font-size:34px;font-weight:800;color:white;line-height:1;}
+.sn span{color:var(--immo);}
+.sl{font-size:12px;color:rgba(255,255,255,0.32);line-height:1.5;}
+.strip-txt{margin-left:auto;font-size:14px;font-weight:300;color:rgba(255,255,255,0.28);max-width:380px;line-height:1.65;padding:28px 0;text-align:right;}
+
+/* SHARED */
+.stag{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--immo);margin-bottom:14px;}
+.stag::before{content:'';display:block;width:20px;height:2px;background:var(--immo);border-radius:1px;}
+.sh{font-family:'Syne',sans-serif;font-size:clamp(28px,3.5vw,46px);font-weight:800;line-height:1.1;letter-spacing:-0.03em;color:var(--text);}
+.sh em{font-style:normal;color:var(--immo);}
+
+/* PHILOSOPHY */
+.philosophy{padding:120px 80px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;}
+.phil-body{font-size:16px;line-height:1.8;color:var(--mid);margin-top:24px;max-width:460px;}
+.plist{list-style:none;margin-top:8px;}
+.pitem{padding:20px 0;border-top:1px solid var(--line);display:flex;gap:20px;align-items:flex-start;}
+.pitem:last-child{border-bottom:1px solid var(--line);}
+.pn{font-family:'Syne',sans-serif;font-size:12px;font-weight:700;color:var(--immo);flex-shrink:0;padding-top:1px;letter-spacing:0.5px;}
+.pt{font-size:14px;font-weight:600;color:var(--text);margin-bottom:4px;}
+.pd{font-size:13px;color:var(--mid);line-height:1.6;}
+
+/* IS/IS NOT */
+.isinot{padding:0 80px 120px;display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.is-c{background:var(--navy);border-radius:16px;padding:48px;}
+.isnot-c{background:var(--white);border:1px solid var(--line);border-radius:16px;padding:48px;}
+.ctag{font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:28px;display:flex;align-items:center;gap:10px;}
+.is-c .ctag{color:rgba(255,255,255,0.35);}
+.isnot-c .ctag{color:var(--light);}
+.cklist{list-style:none;display:flex;flex-direction:column;gap:13px;}
+.cklist li{display:flex;align-items:flex-start;gap:12px;font-size:15px;line-height:1.5;}
+.is-c .cklist li{color:rgba(255,255,255,0.78);}
+.isnot-c .cklist li{color:var(--mid);}
+.ci{width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;font-size:10px;font-weight:600;}
+.is-c .ci{background:rgba(74,124,219,0.2);color:#7AAFF0;}
+.isnot-c .ci{background:var(--bg2);color:var(--light);}
+
+/* HOW */
+.how{background:var(--white);padding:120px 80px;}
+.how-inner{max-width:900px;margin:0 auto;}
+.how-hdr{text-align:center;margin-bottom:72px;}
+.how-hdr .stag{justify-content:center;}
+.how-hdr .stag::before{display:none;}
+.steps{display:flex;flex-direction:column;}
+.step{display:grid;grid-template-columns:72px 1fr;gap:32px;padding:40px 0;border-top:1px solid var(--line);}
+.step:last-child{border-bottom:1px solid var(--line);}
+.step-n{font-family:'Syne',sans-serif;font-size:42px;font-weight:800;color:var(--bg2);line-height:1;padding-top:2px;}
+.step-lv{font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--immo);margin-bottom:8px;}
+.step-t{font-family:'Syne',sans-serif;font-size:22px;font-weight:700;color:var(--text);margin-bottom:10px;letter-spacing:-0.02em;}
+.step-b{font-size:15px;line-height:1.75;color:var(--mid);max-width:600px;}
+
+/* PERSONAS */
+.personas{padding:120px 0 80px;overflow:hidden;}
+.pers-hdr{padding:0 80px;display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:48px;}
+.slider-track{display:flex;gap:16px;padding:8px 80px 24px;overflow-x:auto;scroll-behavior:smooth;scrollbar-width:none;-ms-overflow-style:none;cursor:grab;user-select:none;}
+.slider-track:active{cursor:grabbing;}
+.slider-track::-webkit-scrollbar{display:none;}
+
+/* PERSONA CARD */
+.pc{flex:0 0 284px;background:var(--white);border-radius:16px;overflow:hidden;border:1.5px solid var(--line);transition:transform 0.3s,box-shadow 0.3s,border-color 0.3s;cursor:pointer;}
+.pc:hover{transform:translateY(-6px);box-shadow:0 20px 48px rgba(28,37,64,0.12);}
+.pc.live-immo{border-color:var(--immo);box-shadow:0 4px 20px rgba(74,124,219,0.15);}
+.pc.live-immo:hover{box-shadow:0 20px 48px rgba(74,124,219,0.2);}
+.pc.live-gastro{border-color:var(--gastro);box-shadow:0 4px 20px rgba(46,184,122,0.15);}
+.pc.live-gastro:hover{box-shadow:0 20px 48px rgba(46,184,122,0.2);}
+.pc.live-fewo{border-color:var(--fewo);box-shadow:0 4px 20px rgba(123,143,168,0.15);}
+.pc.live-fewo:hover{box-shadow:0 20px 48px rgba(123,143,168,0.2);}
+
+.pc-icon{height:148px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
+.pc-immo   .pc-icon{background:linear-gradient(140deg,#1C2E60 0%,#2D50A0 60%,#3A6BD0 100%);}
+.pc-gastro .pc-icon{background:linear-gradient(140deg,#0F2E1C 0%,#1A5E32 60%,#28A05A 100%);}
+.pc-steuer-gehilfe .pc-icon{background:linear-gradient(140deg,#4A1A16 0%,#8B3A30 60%,#D4736A 100%);}
+.pc-hausverwalter .pc-icon{background:linear-gradient(140deg,#1A0A3A 0%,#4A2890 60%,#9B5EE8 100%);}
+.pc-fewo .pc-icon{background:linear-gradient(140deg,#1C2838 0%,#3A5570 60%,#7B8FA8 100%);}
+.pc-icon::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 70% 25%,rgba(255,255,255,0.09) 0%,transparent 55%);}
+.pc-icon svg{position:relative;z-index:2;}
+.live-badge{position:absolute;top:12px;right:12px;z-index:3;background:rgba(0,0,0,0.35);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.18);color:white;font-size:9px;font-weight:600;letter-spacing:1px;text-transform:uppercase;padding:4px 10px;border-radius:20px;display:flex;align-items:center;gap:5px;}
+.live-badge::before{content:'';width:5px;height:5px;border-radius:50%;background:#2EB87A;}
+
+.pc-body{padding:22px 20px 20px;}
+.pc-role{font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--light);margin-bottom:6px;}
+.pc-name{font-family:'Syne',sans-serif;font-size:17px;font-weight:700;color:var(--text);line-height:1.2;margin-bottom:10px;letter-spacing:-0.02em;}
+.pc-immo .pc-name .em{color:var(--immo);}
+.pc-gastro .pc-name .em{color:var(--gastro);}
+.pc-steuer-gehilfe .pc-name .em{color:var(--steuergehilfe);}
+.pc-hausverwalter .pc-name .em{color:var(--hausverwalter);}
+.pc-fewo .pc-name .em{color:var(--fewo);}
+.pc-desc{font-size:13px;line-height:1.65;color:var(--mid);margin-bottom:14px;}
+.pc-qs{list-style:none;display:flex;flex-direction:column;gap:5px;margin-bottom:16px;padding-top:14px;border-top:1px solid var(--line);}
+.pc-qs li{font-size:12px;color:var(--mid);line-height:1.4;display:flex;gap:7px;align-items:flex-start;}
+.pc-immo .pc-qs li::before{content:'→';color:var(--immo);font-size:11px;flex-shrink:0;margin-top:1px;}
+.pc-gastro .pc-qs li::before{content:'→';color:var(--gastro);font-size:11px;flex-shrink:0;margin-top:1px;}
+.pc-steuer-gehilfe .pc-qs li::before{content:'→';color:var(--steuergehilfe);font-size:11px;flex-shrink:0;margin-top:1px;}
+.pc-hausverwalter .pc-qs li::before{content:'→';color:var(--hausverwalter);font-size:11px;flex-shrink:0;margin-top:1px;}
+.pc-fewo .pc-qs li::before{content:'→';color:var(--fewo);font-size:11px;flex-shrink:0;margin-top:1px;}
+
+.pill{display:inline-flex;align-items:center;gap:6px;font-size:10px;font-weight:600;letter-spacing:1px;text-transform:uppercase;padding:5px 12px;border-radius:20px;}
+.pill-i{background:var(--immo-bg);color:var(--immo);}
+.pill-g{background:var(--gastro-bg);color:var(--gastro);}
+.pill-f{background:var(--fewo-bg);color:var(--fewo);}
+.pill-s{background:var(--bg2);color:var(--light);}
+.pill .dot{width:5px;height:5px;border-radius:50%;background:currentColor;}
+
+.sctrl{display:flex;align-items:center;gap:10px;padding:0 80px;margin-top:8px;}
+.sbtn{width:40px;height:40px;border-radius:50%;background:var(--white);border:1.5px solid var(--line);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.2s;color:var(--text);}
+.sbtn:hover{background:var(--navy);color:white;border-color:var(--navy);}
+.sbtn svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;}
+.sdots{display:flex;gap:5px;}
+.sdot{width:6px;height:6px;border-radius:50%;background:var(--line);transition:all 0.25s;cursor:pointer;}
+.sdot.active{background:var(--navy);width:22px;border-radius:3px;}
+
+/* SPOTLIGHT */
+.spotlight{background:var(--navy);padding:120px 80px;position:relative;overflow:hidden;}
+.spotlight::before{content:'';position:absolute;top:-200px;right:-100px;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(74,124,219,0.1) 0%,transparent 70%);pointer-events:none;}
+.sp-inner{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;position:relative;z-index:2;}
+.sp-tag{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(74,124,219,0.6);margin-bottom:14px;}
+.sp-tag::before{content:'';display:block;width:20px;height:2px;background:currentColor;border-radius:1px;}
+.sp-h{font-family:'Syne',sans-serif;font-size:clamp(32px,4vw,52px);font-weight:800;color:white;line-height:1.05;letter-spacing:-0.03em;margin-bottom:20px;}
+.sp-h span{color:var(--immo);}
+.tool-tab{background:rgba(255,255,255,.06);border:1.5px solid rgba(255,255,255,.12);color:rgba(255,255,255,.45);padding:8px 18px;border-radius:8px;font-family:'Syne',sans-serif;font-size:13px;font-weight:600;cursor:pointer;transition:all .2s;}
+.tool-tab:hover{background:rgba(255,255,255,.1);color:rgba(255,255,255,.7);}
+.tool-tab.active{background:var(--tc);color:#fff;border-color:var(--tc);}
+.tool-slide{display:none;animation:fadeSlide .4s ease;}
+.tool-slide.active{display:block;}
+@keyframes fadeSlide{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:translateY(0);}}
+.sp-b{font-size:15px;line-height:1.8;color:rgba(255,255,255,0.4);margin-bottom:36px;max-width:420px;}
+.btn-l{background:white;color:#fff;font-family:'Syne',sans-serif;font-size:14px;font-weight:700;padding:14px 28px;border:none;border-radius:8px;cursor:pointer;text-decoration:none;display:inline-block;transition:transform 0.2s,opacity 0.2s;}
+.btn-l:hover{transform:translateY(-2px);opacity:0.9;}
+.sp-card{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:28px;}
+.sp-card-t{font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.22);margin-bottom:20px;}
+.sp-step{padding:12px 0;border-top:1px solid rgba(255,255,255,0.05);display:flex;align-items:center;gap:14px;cursor:pointer;transition:all 0.2s;}
+.sp-step:last-child{border-bottom:1px solid rgba(255,255,255,0.05);}
+.sp-step:hover .sp-sname{color:white;}
+.sp-sdot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.12);flex-shrink:0;}
+.sp-step.active .sp-sdot{background:var(--immo);}
+.sp-sname{font-size:14px;font-weight:400;color:rgba(255,255,255,0.45);transition:color 0.2s;}
+.sp-step.active .sp-sname{color:white;font-weight:500;}
+.sp-ssub{font-size:11px;color:rgba(255,255,255,0.18);margin-top:1px;}
+.sp-stime{font-size:11px;color:rgba(255,255,255,0.2);margin-left:auto;flex-shrink:0;}
+.tbrow{display:flex;gap:4px;margin-top:18px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:8px;padding:3px;}
+.tbtn{flex:1;font-family:'Inter',sans-serif;font-size:11px;font-weight:500;padding:9px;border:none;border-radius:6px;cursor:pointer;transition:all 0.2s;background:transparent;color:rgba(255,255,255,0.3);}
+.tbtn.active{background:var(--immo);color:white;}
+
+/* TRUST */
+.trust{padding:120px 80px;background:var(--white);}
+.trust-inner{max-width:700px;margin:0 auto;text-align:center;}
+.tq{font-family:'Syne',sans-serif;font-size:clamp(19px,2.3vw,28px);font-weight:700;line-height:1.35;color:var(--text);margin:28px 0 16px;}
+.tq span{color:var(--immo);}
+.ta{font-size:12px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;color:var(--light);}
+.tgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:64px;text-align:left;}
+.titem{background:var(--bg);border-radius:12px;padding:24px;border:1px solid var(--line);}
+.ti-ic{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:14px;}
+.ti-i{background:var(--immo-bg);color:var(--immo);}
+.ti-g{background:var(--gastro-bg);color:var(--gastro);}
+.ti-s{background:var(--steuer-bg);color:var(--steuer);}
+.ti-t{font-size:14px;font-weight:600;color:var(--text);margin-bottom:6px;}
+.ti-b{font-size:13px;line-height:1.65;color:var(--mid);}
+
+/* CTA */
+.cta{background:var(--navy);padding:120px 80px;text-align:center;position:relative;overflow:hidden;}
+.cta::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.02) 1px,transparent 1px);background-size:60px 60px;}
+.cta-in{position:relative;z-index:2;max-width:600px;margin:0 auto;}
+.cta-h{font-family:'Syne',sans-serif;font-size:clamp(36px,5vw,62px);font-weight:800;color:white;line-height:1.0;letter-spacing:-0.03em;margin-bottom:18px;}
+.cta-h span{color:var(--immo);}
+.cta-b{font-size:16px;color:rgba(255,255,255,0.38);line-height:1.7;margin-bottom:40px;}
+
+/* FOOTER */
+footer{background:#131A2E;padding:48px 80px;display:flex;align-items:center;justify-content:space-between;}
+.fb{font-family:'Syne',sans-serif;font-size:17px;font-weight:700;color:rgba(255,255,255,0.38);}
+.fb span{color:var(--immo);}
+.fn{font-size:12px;color:rgba(255,255,255,0.18);margin-top:4px;}
+.flinks{display:flex;gap:24px;list-style:none;}
+.flinks a{font-size:12px;color:rgba(255,255,255,0.22);text-decoration:none;transition:color 0.2s;}
+.flinks a:hover{color:rgba(255,255,255,0.6);}
+
+/* ANIMATIONS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity 0.65s ease,transform 0.65s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+.rd1{transition-delay:0.1s;}
+.rd2{transition-delay:0.2s;}
+.rd3{transition-delay:0.3s;}
+
+/* MODAL */
+.modal-overlay{position:fixed;inset:0;background:rgba(28,37,64,0.72);backdrop-filter:blur(5px);z-index:200;display:flex;align-items:center;justify-content:center;padding:24px;opacity:0;visibility:hidden;transition:opacity .25s,visibility .25s;}
+.modal-overlay.open{opacity:1;visibility:visible;}
+.modal-card{background:white;border-radius:20px;padding:40px 36px;width:100%;max-width:400px;box-shadow:0 32px 80px rgba(28,37,64,0.28);transform:translateY(16px);transition:transform .25s;position:relative;}
+.modal-overlay.open .modal-card{transform:translateY(0);}
+.modal-close{position:absolute;top:14px;right:14px;width:30px;height:30px;border-radius:50%;border:none;background:var(--bg2);cursor:pointer;font-size:18px;color:var(--mid);display:flex;align-items:center;justify-content:center;line-height:1;transition:background .15s;}
+.modal-close:hover{background:var(--line);}
+.modal-logo{display:flex;align-items:center;gap:10px;margin-bottom:20px;}
+.modal-logo-text{font-family:'Syne',sans-serif;font-size:17px;font-weight:700;color:var(--navy);}
+.modal-logo-text span{color:var(--immo);font-weight:500;}
+.modal-title{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;color:var(--navy);margin-bottom:5px;letter-spacing:-.02em;}
+.modal-sub{font-size:13px;color:var(--light);margin-bottom:22px;}
+.mtabs{display:flex;margin-bottom:22px;border-bottom:2px solid var(--line);}
+.mtab{padding:8px 20px;font-family:'Syne',sans-serif;font-size:13px;font-weight:600;cursor:pointer;color:var(--light);border-bottom:2px solid transparent;margin-bottom:-2px;transition:color .2s,border-color .2s;}
+.mtab.active{color:var(--immo);border-bottom-color:var(--immo);}
+.mf{margin-bottom:14px;}
+.mf label{display:block;font-size:11px;font-weight:600;color:var(--mid);margin-bottom:5px;letter-spacing:.5px;text-transform:uppercase;}
+.mf input{width:100%;padding:11px 14px;border:1.5px solid var(--line);border-radius:10px;font-size:14px;font-family:'Inter',sans-serif;outline:none;transition:border-color .2s;color:var(--text);background:white;}
+.mf input:focus{border-color:var(--immo);}
+.mbtn{width:100%;padding:13px;background:var(--immo);color:white;border:none;border-radius:10px;font-family:'Syne',sans-serif;font-size:14px;font-weight:700;cursor:pointer;margin-top:8px;transition:opacity .2s;}
+.mbtn:hover{opacity:0.88;}
+.mmsg{font-size:13px;margin-top:10px;text-align:center;min-height:18px;}
+.mmsg.err{color:#E05555;}
+.mmsg.ok{color:var(--gastro);}
+@media(max-width:480px){.modal-card{padding:28px 20px;}.mf input{font-size:16px!important;min-height:44px;}.mbtn{min-height:48px;}}
+
+/* MOBILE */
+@media(max-width:900px){
+  nav{padding:0 20px;}
+  .nav-links{display:none;}
+  .hero{grid-template-columns:1fr;}
+  .hero-left{padding:60px 24px 48px;}
+  .hero-right{display:none;}
+  .strip{padding:0 24px;flex-wrap:wrap;}
+  .strip-txt{display:none;}
+  .philosophy,.isinot{grid-template-columns:1fr;padding:80px 24px;}
+  .how{padding:80px 24px;}
+  .pers-hdr,.slider-track,.sctrl{padding-left:24px;padding-right:24px;}
+  .spotlight{padding:80px 24px;}
+  .sp-inner{grid-template-columns:1fr;gap:48px;}
+  .trust{padding:80px 24px;}
+  .tgrid{grid-template-columns:1fr;}
+  .cta{padding:80px 24px;}
+  footer{padding:40px 24px;flex-direction:column;gap:20px;text-align:center;}
+  .flinks{justify-content:center;}
+}
+</style>
 </head>
 <body>
-<p>Weiterleitung zu <a href="https://immowert.onrender.com">Sam · Sams Welten</a>...</p>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nav-logo">
+    <svg width="34" height="34" viewBox="0 0 100 100" fill="none">
+      <circle cx="50" cy="50" r="50" fill="#1E2A4A"/>
+      <circle cx="50" cy="40" r="14" fill="none" stroke="#8BADD4" stroke-width="3.5"/>
+      <rect x="41" y="29" width="18" height="6" rx="3" fill="#8BADD4"/>
+      <path d="M44 43 Q50 49 56 43" stroke="#8BADD4" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+      <circle cx="45.5" cy="39.5" r="1.8" fill="#8BADD4"/>
+      <circle cx="54.5" cy="39.5" r="1.8" fill="#8BADD4"/>
+      <path d="M30 72 Q50 58 70 72" stroke="#8BADD4" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+      <circle cx="32" cy="70" r="3" fill="#8BADD4"/>
+      <circle cx="68" cy="70" r="3" fill="#8BADD4"/>
+    </svg>
+    <div class="nav-logo-text">Sam<span> · Life Coach</span></div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#how">So funktioniert's</a></li>
+    <li><a href="#personas">Sams Welten</a></li>
+    <li><a href="#personas">Tools</a></li>
+    <li><a href="#about">Über Sam</a></li>
+    <li><a href="#" class="nav-cta" id="navCta" onclick="window.location.href='https://immowert.onrender.com';return false;">Anmelden</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-badge"><span class="badge-dot"></span>Entscheidungs-Support-System</div>
+    <h1 class="hero-h">Klar denken.<br><span class="c1">Gut entscheiden.</span><br>Wirklich.</h1>
+    <p class="hero-sub">Sam hilft dir, die finanziellen und privaten Entscheidungen zu strukturieren, die niemand dir beigebracht hat zu treffen — ohne dir zu sagen, was du tun sollst.</p>
+    <div class="hero-actions">
+      <a href="#personas" class="btn-p">Sams Welten entdecken <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+      <a href="#how" class="btn-g">So funktioniert's <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3v10M3 9l5 5 5-5"/></svg></a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="mockup">
+      <div class="m-bar">
+        <div class="md"></div><div class="md"></div><div class="md"></div>
+        <span class="m-title">Sam · Immo-Experte — Cashflow-Analyse</span>
+      </div>
+      <div class="m-body">
+        <div class="m-progress">
+          <div class="mp done"></div><div class="mp done"></div><div class="mp done"></div>
+          <div class="mp done"></div><div class="mp cur"></div>
+          <div class="mp"></div><div class="mp"></div><div class="mp"></div>
+        </div>
+        <div class="m-lbl">Cashflow vor Steuern — 3 Szenarien</div>
+        <div class="m-scenarios">
+          <div class="ms ms-w"><div class="ms-l">Wunschpreis</div><div class="ms-v">600.000 €</div><div class="ms-sub">Kredit 480.000 €</div></div>
+          <div class="ms ms-s"><div class="ms-l">Sachwert</div><div class="ms-v">1.236.480 €</div><div class="ms-sub">Kredit 989.184 €</div></div>
+          <div class="ms ms-e"><div class="ms-l">Ertragswert</div><div class="ms-v">610.048 €</div><div class="ms-sub">Kredit 488.039 €</div></div>
+        </div>
+        <div class="m-cf">
+          <div class="cf-l">Monatlicher Cashflow</div>
+          <div class="cf-r"><div class="cf-sc"><div class="cf-dot" style="background:var(--rose)"></div>Aktuell</div><div class="cf-pos">+108 €/Mo</div></div>
+          <div class="cf-r"><div class="cf-sc"><div class="cf-dot" style="background:var(--teal-c)"></div>Mittelfristig</div><div class="cf-neg">−2.323 €/Mo</div></div>
+          <div class="cf-r"><div class="cf-sc"><div class="cf-dot" style="background:var(--green-c)"></div>Langfristig</div><div class="cf-pos">+508 €/Mo</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STRIP -->
+<div class="strip">
+  <div class="si"><div class="sn">5<span>+</span></div><div class="sl">Sam-Rollen<br>in Entwicklung</div></div>
+  <div class="si"><div class="sn">3</div><div class="sl">Entscheidungs-<br>Ebenen</div></div>
+  <div class="si"><div class="sn">0</div><div class="sl">Meinungen<br>gegeben</div></div>
+  <div class="strip-txt">Sam sagt dir nicht, was du tun sollst. Sam hilft dir, deine Situation so gut zu verstehen, dass du selbst entscheiden kannst.</div>
+</div>
+
+<!-- PHILOSOPHY -->
+<section class="philosophy" id="about">
+  <div class="reveal">
+    <div class="stag">Philosophie</div>
+    <h2 class="sh">Werkzeuge statt Theorie.<br><em>Struktur</em> statt Bauchgefühl.</h2>
+    <p class="phil-body">Die meisten finanziellen Entscheidungen scheitern nicht daran, dass Menschen zu wenig wissen — sondern daran, dass ihnen eine klare Struktur fehlt. Sam liefert genau diese Struktur. Keine Antworten. Struktur.</p>
+    <p class="phil-body" style="margin-top:16px;">Sam ist kein Coach, kein Berater und kein Guru. Sam ist eine Denkmaschine — präzise, neutral, vollständig auf deiner Seite.</p>
+  </div>
+  <div class="reveal rd2">
+    <ul class="plist">
+      <li class="pitem"><div class="pn">01</div><div><div class="pt">Erklären beim Tun, nicht vorab</div><div class="pd">Kontext erscheint genau dann, wenn du ihn brauchst — nicht als Vorlesung am Anfang.</div></div></li>
+      <li class="pitem"><div class="pn">02</div><div><div class="pt">Klarheit statt Vollständigkeit</div><div class="pd">Ein Modell, das dir die drei wichtigsten Faktoren zeigt, ist besser als eines, das alles gleich gewichtet.</div></div></li>
+      <li class="pitem"><div class="pn">03</div><div><div class="pt">Neutral und ohne Wertung</div><div class="pd">Keine Agenda, keine Produkte. Deine Zahlen, deine Annahmen, dein Ergebnis.</div></div></li>
+      <li class="pitem"><div class="pn">04</div><div><div class="pt">Entscheidungsreife als Ziel</div><div class="pd">Das Ziel ist nicht Wissen — es ist die Fähigkeit, deine Entscheidung zu erklären und zu vertreten.</div></div></li>
+    </ul>
+  </div>
+</section>
+
+<!-- IS / IS NOT -->
+<section class="isinot">
+  <div class="is-c reveal">
+    <div class="ctag">Sam ist</div>
+    <ul class="cklist">
+      <li><div class="ci">✓</div>Ein strukturiertes Entscheidungssystem</li>
+      <li><div class="ci">✓</div>Ein Denkrahmen für komplexe Lebensfragen</li>
+      <li><div class="ci">✓</div>Ein Klarheitswerkzeug mit deinen eigenen Zahlen</li>
+      <li><div class="ci">✓</div>Vorbereitung für Gespräche mit Banken &amp; Beratern</li>
+      <li><div class="ci">✓</div>Ruhig, neutral und vollständig auf deiner Seite</li>
+    </ul>
+  </div>
+  <div class="isnot-c reveal rd2">
+    <div class="ctag">Sam ist nicht</div>
+    <ul class="cklist">
+      <li><div class="ci">–</div>Ein Finanzberater oder Anlageservice</li>
+      <li><div class="ci">–</div>Ein Coaching-Programm oder Motivationsangebot</li>
+      <li><div class="ci">–</div>Ein Vergleichsportal oder Produktempfehler</li>
+      <li><div class="ci">–</div>Ein Ort, der dir sagt, was du tun sollst</li>
+      <li><div class="ci">–</div>Ein Guru, eine Influencer-Marke oder Content-Feed</li>
+    </ul>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how" id="how">
+  <div class="how-inner">
+    <div class="how-hdr reveal">
+      <div class="stag">So funktioniert Sam</div>
+      <h2 class="sh" style="margin-top:12px;">Von <em>Unklarheit</em><br>zur Entscheidungsreife.</h2>
+    </div>
+    <div class="steps">
+      <div class="step reveal"><div class="step-n">01</div><div><div class="step-lv">Orientierung</div><div class="step-t">Lohnt es sich überhaupt, tiefer einzusteigen?</div><p class="step-b">Sam hilft dir zu verstehen, ob ein Thema für deine Situation gerade wirklich relevant ist — oder ob du es getrost zurückstellen kannst.</p></div></div>
+      <div class="step reveal rd1"><div class="step-n">02</div><div><div class="step-lv">Strukturierte Auswertung</div><div class="step-t">Ich verstehe die zentralen Treiber und Risiken.</div><p class="step-b">Du gibst deine eigenen Zahlen ein. Sam zeigt dir, was sich ändert, wenn sich diese Zahlen verschieben — und was wirklich entscheidend ist.</p></div></div>
+      <div class="step reveal rd2"><div class="step-n">03</div><div><div class="step-lv">Entscheidungsreife</div><div class="step-t">Ich kann diese Entscheidung erklären und vertreten.</div><p class="step-b">Du gehst raus in der Lage, deine Überlegungen klar darzulegen — gegenüber einer Bank, einem Arbeitgeber, einem Partner oder dir selbst.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PERSONAS -->
+<section class="personas" id="personas">
+  <div class="pers-hdr reveal">
+    <div>
+      <div class="stag">Sams Welten</div>
+      <h2 class="sh" style="margin-top:12px;">Für jede Lebensfrage<br>der <em>richtige Sam.</em></h2>
+    </div>
+    <a href="#" onclick="window.location.href='https://immowert.onrender.com';return false;" style="font-size:14px;font-weight:500;color:var(--mid);text-decoration:none;border-bottom:1px solid var(--line);padding-bottom:2px;">Alle Tools ansehen →</a>
+  </div>
+
+  <div class="slider-track" id="sliderTrack">
+
+    <!-- 1 Immo -->
+    <div class="pc pc-immo live-immo" onclick="window.location.href='https://immowert.onrender.com/app'" style="cursor:pointer;">
+      <div class="pc-icon">
+        <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
+          <path d="M14 42 L40 16 L66 42" stroke="rgba(255,255,255,0.55)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          <rect x="22" y="42" width="36" height="24" rx="2" stroke="rgba(255,255,255,0.55)" stroke-width="2.5" fill="none"/>
+          <rect x="33" y="52" width="14" height="14" rx="2" fill="rgba(255,255,255,0.18)"/>
+          <circle cx="62" cy="22" r="10" fill="#1C2E60" stroke="#7AAFF0" stroke-width="2"/>
+          <circle cx="59" cy="21" r="1.2" fill="#7AAFF0"/>
+          <circle cx="65" cy="21" r="1.2" fill="#7AAFF0"/>
+          <path d="M59 24.5 Q62 27 65 24.5" stroke="#7AAFF0" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+        </svg>
+        <div class="live-badge">Live</div>
+      </div>
+      <div class="pc-body">
+        <div class="pc-role">Tool 01</div>
+        <div class="pc-name">Sam, <span class="em">der Immo-Experte</span></div>
+        <p class="pc-desc">Kaufen oder mieten? Sam durchleuchtet deine Immobilienentscheidung mit klaren Zahlen, echten Szenarien und ohne Maklerdruck.</p>
+        <ul class="pc-qs"><li>Was kann ich mir wirklich leisten?</li><li>Kaufen vs. Mieten über 20 Jahre?</li><li>Was, wenn die Zinsen steigen?</li></ul>
+        <span class="pill pill-i"><span class="dot"></span>Jetzt verfügbar</span>
+      </div>
+    </div>
+
+    <!-- 2 Gastro -->
+    <div class="pc pc-gastro live-gastro" onclick="window.location.href='https://immowert.onrender.com/gastrocheck'" style="cursor:pointer;">
+      <div class="pc-icon">
+        <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
+          <circle cx="40" cy="44" r="18" stroke="rgba(255,255,255,0.5)" stroke-width="2.5" fill="none"/>
+          <circle cx="40" cy="44" r="11" stroke="rgba(255,255,255,0.18)" stroke-width="1.5" fill="none"/>
+          <line x1="24" y1="20" x2="24" y2="33" stroke="rgba(255,255,255,0.55)" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="20" y1="20" x2="20" y2="27" stroke="rgba(255,255,255,0.38)" stroke-width="2" stroke-linecap="round"/>
+          <line x1="28" y1="20" x2="28" y2="27" stroke="rgba(255,255,255,0.38)" stroke-width="2" stroke-linecap="round"/>
+          <line x1="56" y1="20" x2="56" y2="34" stroke="rgba(255,255,255,0.55)" stroke-width="2.5" stroke-linecap="round"/>
+          <path d="M56 20 Q63 26 56 33" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.38)" stroke-width="1.5"/>
+          <circle cx="62" cy="18" r="10" fill="#0F2E1C" stroke="#5EBF8A" stroke-width="2"/>
+          <circle cx="59" cy="17" r="1.2" fill="#5EBF8A"/>
+          <circle cx="65" cy="17" r="1.2" fill="#5EBF8A"/>
+          <path d="M59 20.5 Q62 23 65 20.5" stroke="#5EBF8A" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+        </svg>
+        <div class="live-badge">Live</div>
+      </div>
+      <div class="pc-body">
+        <div class="pc-role">Tool 02</div>
+        <div class="pc-name">Sam, <span class="em">der Gastro-Gründer</span></div>
+        <p class="pc-desc">Restaurant, Café oder Food-Konzept? Sam hilft dir, den Business-Case durchzurechnen — bevor du unterschreibst.</p>
+        <ul class="pc-qs"><li>Wie viele Couverts brauche ich für Break-even?</li><li>Welche Fixkosten werden oft unterschätzt?</li><li>Macht das Konzept bei echten Zahlen Sinn?</li></ul>
+        <span class="pill pill-g"><span class="dot"></span>Jetzt verfügbar</span>
+      </div>
+    </div>
+
+    <!-- 3 Steuer-Gehilfe -->
+    <div class="pc pc-steuer-gehilfe" onclick="window.open('http://localhost:5003','_blank')" style="cursor:pointer;">
+      <div class="pc-icon">
+        <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
+          <rect x="18" y="16" width="30" height="40" rx="3" stroke="rgba(255,255,255,0.5)" stroke-width="2.5" fill="none"/>
+          <line x1="25" y1="28" x2="41" y2="28" stroke="rgba(255,255,255,0.3)" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="25" y1="35" x2="39" y2="35" stroke="rgba(255,255,255,0.3)" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="25" y1="42" x2="37" y2="42" stroke="rgba(255,255,255,0.3)" stroke-width="1.5" stroke-linecap="round"/>
+          <rect x="50" y="34" width="16" height="22" rx="2" stroke="rgba(255,255,255,0.45)" stroke-width="2" fill="rgba(255,255,255,0.08)"/>
+          <line x1="50" y1="41" x2="66" y2="41" stroke="rgba(255,255,255,0.25)" stroke-width="1"/>
+          <line x1="58" y1="34" x2="58" y2="56" stroke="rgba(255,255,255,0.25)" stroke-width="1"/>
+          <path d="M54 48 L62 48" stroke="rgba(255,255,255,0.5)" stroke-width="1.5" stroke-linecap="round"/>
+          <circle cx="62" cy="18" r="10" fill="#4A1A16" stroke="#E8998F" stroke-width="2"/>
+          <circle cx="59" cy="17" r="1.2" fill="#E8998F"/>
+          <circle cx="65" cy="17" r="1.2" fill="#E8998F"/>
+          <path d="M59 20.5 Q62 23 65 20.5" stroke="#E8998F" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+        </svg>
+        <div class="live-badge" style="background:#D4736A;">Lokal</div>
+      </div>
+      <div class="pc-body">
+        <div class="pc-role">Tool 03</div>
+        <div class="pc-name">Sam, <span class="em">der Steuer-Gehilfe</span></div>
+        <p class="pc-desc">Bankdaten importieren, automatisch kategorisieren, Excel fuer den Steuerberater exportieren — ueber alle Konten und Immobilien hinweg.</p>
+        <ul class="pc-qs"><li>Welche Buchungen gehoeren zu welcher Immobilie?</li><li>Wie bereite ich alles fuer den Steuerberater vor?</li><li>Was sind meine Einnahmen und Ausgaben pro Objekt?</li></ul>
+        <span class="pill pill-g"><span class="dot"></span>Funktioniert (lokal)</span>
+      </div>
+    </div>
+
+    <!-- 4 Hausverwalter -->
+    <div class="pc pc-hausverwalter" onclick="window.open('http://localhost:5004','_blank')" style="cursor:pointer;">
+      <div class="pc-icon">
+        <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
+          <rect x="12" y="30" width="22" height="32" rx="2" stroke="rgba(255,255,255,0.5)" stroke-width="2.5" fill="none"/>
+          <rect x="46" y="22" width="22" height="40" rx="2" stroke="rgba(255,255,255,0.5)" stroke-width="2.5" fill="none"/>
+          <rect x="16" y="36" width="6" height="5" rx="1" fill="rgba(255,255,255,0.25)"/>
+          <rect x="24" y="36" width="6" height="5" rx="1" fill="rgba(255,255,255,0.25)"/>
+          <rect x="16" y="45" width="6" height="5" rx="1" fill="rgba(255,255,255,0.25)"/>
+          <rect x="24" y="45" width="6" height="5" rx="1" fill="rgba(255,255,255,0.25)"/>
+          <rect x="50" y="28" width="6" height="5" rx="1" fill="rgba(255,255,255,0.25)"/>
+          <rect x="58" y="28" width="6" height="5" rx="1" fill="rgba(255,255,255,0.25)"/>
+          <rect x="50" y="37" width="6" height="5" rx="1" fill="rgba(255,255,255,0.25)"/>
+          <rect x="58" y="37" width="6" height="5" rx="1" fill="rgba(255,255,255,0.25)"/>
+          <circle cx="33" cy="52" r="4" stroke="rgba(255,255,255,0.5)" stroke-width="1.5" fill="none"/>
+          <line x1="36" y1="55" x2="42" y2="55" stroke="rgba(255,255,255,0.3)" stroke-width="1.5" stroke-linecap="round"/>
+          <circle cx="64" cy="16" r="10" fill="#1A0A3A" stroke="#B48AEF" stroke-width="2"/>
+          <circle cx="61" cy="15" r="1.2" fill="#B48AEF"/>
+          <circle cx="67" cy="15" r="1.2" fill="#B48AEF"/>
+          <path d="M61 18.5 Q64 21 67 18.5" stroke="#B48AEF" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+        </svg>
+      </div>
+      <div class="pc-body">
+        <div class="pc-role">Tool 04</div>
+        <div class="pc-name">Sam, <span class="em">der Hausverwalter</span></div>
+        <p class="pc-desc">Mehrfamilienhaus verwalten: Betriebskosten abrechnen, Zaehlerstaende erfassen, Vorauszahlungen pruefen — rechtssicher und nachvollziehbar.</p>
+        <ul class="pc-qs"><li>Wie verteile ich Betriebskosten korrekt?</li><li>Stimmen die Vorauszahlungen meiner Mieter?</li><li>Wie erstelle ich eine Jahresabrechnung?</li></ul>
+        <span class="pill pill-s"><span class="dot"></span>In Entwicklung (lokal)</span>
+      </div>
+    </div>
+
+    <!-- 5 Fewo-Manager -->
+    <div class="pc pc-fewo live-fewo" onclick="window.open('https://fewo-manager.onrender.com','_blank')" style="cursor:pointer;">
+      <div class="pc-icon">
+        <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
+          <rect x="14" y="28" width="20" height="26" rx="3" stroke="rgba(255,255,255,0.5)" stroke-width="2.5" fill="none"/>
+          <path d="M14 34 L24 24 L34 34" stroke="rgba(255,255,255,0.5)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <rect x="20" y="42" width="8" height="12" rx="1" fill="rgba(255,255,255,0.25)"/>
+          <rect x="46" y="24" width="20" height="30" rx="3" stroke="rgba(255,255,255,0.5)" stroke-width="2.5" fill="none"/>
+          <path d="M46 30 L56 20 L66 30" stroke="rgba(255,255,255,0.5)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <rect x="50" y="34" width="5" height="5" rx="1" fill="rgba(255,255,255,0.25)"/>
+          <rect x="57" y="34" width="5" height="5" rx="1" fill="rgba(255,255,255,0.25)"/>
+          <rect x="52" y="42" width="8" height="12" rx="1" fill="rgba(255,255,255,0.25)"/>
+          <circle cx="64" cy="16" r="10" fill="#1C2838" stroke="#9AADCA" stroke-width="2"/>
+          <circle cx="61" cy="15" r="1.2" fill="#9AADCA"/>
+          <circle cx="67" cy="15" r="1.2" fill="#9AADCA"/>
+          <path d="M61 18.5 Q64 21 67 18.5" stroke="#9AADCA" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+        </svg>
+        <div class="live-badge">Live</div>
+      </div>
+      <div class="pc-body">
+        <div class="pc-role">Tool 05</div>
+        <div class="pc-name">Sam, <span class="em">der Fewo-Manager</span></div>
+        <p class="pc-desc">Ferienwohnungen verwalten: Buchungen, Kanaele, Buchhaltung, iCal-Sync — alles an einem Ort fuer Vermieter mit mehreren Objekten.</p>
+        <ul class="pc-qs"><li>Welche Buchung kommt von welchem Portal?</li><li>Wie gleiche ich Bankbewegungen mit Buchungen ab?</li><li>Was verdiene ich pro Wohnung nach Kosten?</li></ul>
+        <span class="pill pill-f"><span class="dot"></span>Jetzt verfügbar</span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="sctrl">
+    <button class="sbtn" id="sPrev"><svg viewBox="0 0 16 16"><polyline points="10,3 5,8 10,13"/></svg></button>
+    <button class="sbtn" id="sNext"><svg viewBox="0 0 16 16"><polyline points="6,3 11,8 6,13"/></svg></button>
+    <div class="sdots" id="sDots">
+      <div class="sdot active" data-i="0"></div>
+      <div class="sdot" data-i="1"></div>
+      <div class="sdot" data-i="2"></div>
+      <div class="sdot" data-i="3"></div>
+      <div class="sdot" data-i="4"></div>
+    </div>
+  </div>
+</section>
+
+<!-- TOOL DETAILS SLIDER -->
+<section class="spotlight" id="tool-details">
+  <div style="max-width:1080px;margin:0 auto;padding:0 24px;">
+    <div class="reveal" style="text-align:center;margin-bottom:40px;">
+      <div class="stag" style="justify-content:center;">Was steckt drin?</div>
+      <h2 class="sh" style="margin-top:12px;">Jedes Tool im Detail</h2>
+    </div>
+
+    <!-- Tab-Bar -->
+    <div style="display:flex;justify-content:center;gap:8px;margin-bottom:32px;flex-wrap:wrap;" id="toolTabs">
+      <button class="tool-tab active" data-tool="immo" onclick="showToolSlide('immo')" style="--tc:var(--immo);">Immo-Experte</button>
+      <button class="tool-tab" data-tool="gastro" onclick="showToolSlide('gastro')" style="--tc:var(--gastro);">Gastro-Gruender</button>
+      <button class="tool-tab" data-tool="steuergehilfe" onclick="showToolSlide('steuergehilfe')" style="--tc:var(--steuergehilfe);">Steuer-Gehilfe</button>
+      <button class="tool-tab" data-tool="hausverwalter" onclick="showToolSlide('hausverwalter')" style="--tc:var(--hausverwalter);">Hausverwalter</button>
+      <button class="tool-tab" data-tool="fewo" onclick="showToolSlide('fewo')" style="--tc:var(--fewo);">Fewo-Manager</button>
+    </div>
+
+    <!-- SLIDE: Immo-Experte -->
+    <div class="tool-slide active" id="slide-immo">
+      <div class="sp-inner">
+        <div>
+          <div class="sp-tag" style="color:var(--immo);">Tool 01 — Jetzt verfügbar</div>
+          <h2 class="sp-h">Sam,<br><span style="color:var(--immo);">der Immo-Experte</span></h2>
+          <p class="sp-b">Immobilienentscheidungen gehören zu den größten deines Lebens — doch die meisten treffen sie aus dem Bauch heraus. Sam strukturiert jede Annahme, jedes Szenario, klar und nachvollziehbar.</p>
+          <a href="#" class="btn-l" id="spotlightBtn" onclick="window.location.href='https://immowert.onrender.com/app';return false;" style="background:var(--immo);">Immo-Experten starten</a>
+        </div>
+        <div>
+          <div class="sp-card">
+            <div class="sp-card-t">Features</div>
+            <div>
+              <div class="sp-step active"><div class="sp-sdot" style="background:var(--immo);"></div><div><div class="sp-sname">Sachwertverfahren</div><div class="sp-ssub">Gewerke, Wertminderung, Marktanpassung</div></div><div class="sp-stime">Pro</div></div>
+              <div class="sp-step"><div class="sp-sdot" style="background:var(--immo);"></div><div><div class="sp-sname">Ertragswertverfahren</div><div class="sp-ssub">Mietprognose, BGB-konforme Kappung</div></div><div class="sp-stime">Pro</div></div>
+              <div class="sp-step"><div class="sp-sdot" style="background:var(--immo);"></div><div><div class="sp-sname">Finanzierung & Cashflow</div><div class="sp-ssub">3 Szenarien, Eigenkapital, Annuität</div></div><div class="sp-stime">Pro</div></div>
+              <div class="sp-step"><div class="sp-sdot" style="background:var(--immo);"></div><div><div class="sp-sname">MFH-Unterstützung</div><div class="sp-ssub">Mehrfamilienhaus, Kostenaufteilung, MEA</div></div><div class="sp-stime">Pro</div></div>
+              <div class="sp-step"><div class="sp-sdot" style="background:var(--immo);"></div><div><div class="sp-sname">KI-Bankmappe</div><div class="sp-ssub">Professionelle Finanzierungsunterlage als PDF</div></div><div class="sp-stime">Pro</div></div>
+            </div>
+            <div class="tbrow">
+              <span class="tbtn" style="cursor:default;opacity:.5;">Basis (geplant)</span>
+              <span class="tbtn active" style="cursor:default;">Pro-Version</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE: Gastro-Gründer -->
+    <div class="tool-slide" id="slide-gastro">
+      <div class="sp-inner">
+        <div>
+          <div class="sp-tag" style="color:var(--gastro);">Tool 02 — Jetzt verfügbar</div>
+          <h2 class="sp-h">Sam,<br><span style="color:var(--gastro);">der Gastro-Gründer</span></h2>
+          <p class="sp-b">Restaurant, Café oder Food-Konzept? Sam hilft dir, den Business-Case komplett durchzurechnen — Umsatz, Personal, Betriebskosten und GuV auf einen Blick.</p>
+          <a href="https://immowert.onrender.com/gastrocheck" class="btn-l" style="background:var(--gastro);">Gastro-Gründer starten</a>
+        </div>
+        <div>
+          <div class="sp-card">
+            <div class="sp-card-t">Features</div>
+            <div>
+              <div class="sp-step active"><div class="sp-sdot" style="background:var(--gastro);"></div><div><div class="sp-sname">Umsatzprognose</div><div class="sp-ssub">Öffnungstage, Couverts, Durchschnittsbon</div></div><div class="sp-stime">Pro</div></div>
+              <div class="sp-step"><div class="sp-sdot" style="background:var(--gastro);"></div><div><div class="sp-sname">GuV-Rechnung</div><div class="sp-ssub">Wareneinsatz, Personal, Fixkosten</div></div><div class="sp-stime">Pro</div></div>
+              <div class="sp-step"><div class="sp-sdot" style="background:var(--gastro);"></div><div><div class="sp-sname">Betriebskosten</div><div class="sp-ssub">Miete, Energie, Versicherungen, Wartung</div></div><div class="sp-stime">Pro</div></div>
+              <div class="sp-step"><div class="sp-sdot" style="background:var(--gastro);"></div><div><div class="sp-sname">Personalplanung</div><div class="sp-ssub">Rollen, Schichten, Lohnkosten, Trinkgeld</div></div><div class="sp-stime">Pro</div></div>
+              <div class="sp-step"><div class="sp-sdot" style="background:var(--gastro);"></div><div><div class="sp-sname">Event-Kalkulation</div><div class="sp-ssub">Wochenend-Events mit Zusatzpersonal</div></div><div class="sp-stime">Pro</div></div>
+            </div>
+            <div class="tbrow">
+              <span class="tbtn" style="cursor:default;opacity:.5;">Basis (geplant)</span>
+              <span class="tbtn active" style="cursor:default;">Pro-Version</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE: Steuer-Gehilfe -->
+    <div class="tool-slide" id="slide-steuergehilfe">
+      <div class="sp-inner">
+        <div>
+          <div class="sp-tag" style="color:var(--steuergehilfe);">Tool 03 — Funktioniert (lokal)</div>
+          <h2 class="sp-h">Sam,<br><span style="color:var(--steuergehilfe);">der Steuer-Gehilfe</span></h2>
+          <p class="sp-b">Bankdaten importieren, automatisch kategorisieren und fuer den Steuerberater aufbereiten. 31 vordefinierte Regeln erkennen Mieten, Darlehen, Nebenkosten und mehr — ueber alle Konten hinweg.</p>
+          <a href="http://localhost:5003" target="_blank" class="btn-l" style="background:var(--steuergehilfe);">Steuer-Gehilfe oeffnen</a>
+        </div>
+        <div>
+          <div class="sp-card">
+            <div class="sp-card-t">Features</div>
+            <div>
+              <div class="sp-step active"><div class="sp-sdot" style="background:var(--steuergehilfe);"></div><div><div class="sp-sname">CSV-Import</div><div class="sp-ssub">Sparkasse Standard + camt52v8, Duplikat-Erkennung</div></div><div class="sp-stime">Live</div></div>
+              <div class="sp-step"><div class="sp-sdot" style="background:var(--steuergehilfe);"></div><div><div class="sp-sname">Auto-Kategorisierung</div><div class="sp-ssub">31 Regeln matchen Auftraggeber + Verwendungszweck</div></div><div class="sp-stime">Live</div></div>
+              <div class="sp-step"><div class="sp-sdot" style="background:var(--steuergehilfe);"></div><div><div class="sp-sname">7 Kategorien</div><div class="sp-ssub">Pro Immobilie + Makler, Unternehmen, Privat, Investment</div></div><div class="sp-stime">Live</div></div>
+              <div class="sp-step"><div class="sp-sdot" style="background:var(--steuergehilfe);"></div><div><div class="sp-sname">Excel-Export</div><div class="sp-ssub">Zusammenfassung + Sheet pro Kategorie fuer Steuerberater</div></div><div class="sp-stime">Live</div></div>
+              <div class="sp-step"><div class="sp-sdot" style="background:var(--steuergehilfe);"></div><div><div class="sp-sname">FinTS-Anbindung</div><div class="sp-ssub">Direktabruf von der Bank (pushTAN)</div></div><div class="sp-stime">Geplant</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE: Hausverwalter -->
+    <div class="tool-slide" id="slide-hausverwalter">
+      <div class="sp-inner">
+        <div>
+          <div class="sp-tag" style="color:var(--hausverwalter);">Tool 04 — In Entwicklung</div>
+          <h2 class="sp-h">Sam,<br><span style="color:var(--hausverwalter);">der Hausverwalter</span></h2>
+          <p class="sp-b">Betriebskosten korrekt auf Einheiten verteilen, Zaehlerstaende erfassen, Vorauszahlungen abrechnen — mit vollstaendigem Audit-Trail und nachvollziehbaren Berechnungen.</p>
+          <a href="http://localhost:5004" target="_blank" class="btn-l" style="background:var(--hausverwalter);">Hausverwalter oeffnen</a>
+        </div>
+        <div>
+          <div class="sp-card">
+            <div class="sp-card-t">Geplante Features</div>
+            <div>
+              <div class="sp-step active"><div class="sp-sdot" style="background:var(--hausverwalter);"></div><div><div class="sp-sname">Liegenschaften & Einheiten</div><div class="sp-ssub">Gebaeude, Wohnungen, Mieter mit Zeitraeumen</div></div><div class="sp-stime">Bereit</div></div>
+              <div class="sp-step"><div class="sp-sdot" style="background:var(--hausverwalter);"></div><div><div class="sp-sname">Zaehlerstaende</div><div class="sp-ssub">Gas, Wasser, Strom — Haupt- und Unterzaehler</div></div><div class="sp-stime">Bereit</div></div>
+              <div class="sp-step"><div class="sp-sdot" style="background:var(--hausverwalter);"></div><div><div class="sp-sname">Betriebskostenabrechnung</div><div class="sp-ssub">3 Verteilerschluessel: Flaeche, Einheit, Verbrauch</div></div><div class="sp-stime">Geplant</div></div>
+              <div class="sp-step"><div class="sp-sdot" style="background:var(--hausverwalter);"></div><div><div class="sp-sname">Banking-Integration</div><div class="sp-ssub">CSV-Import, Kosten mit Bankbuchungen verknuepfen</div></div><div class="sp-stime">Bereit</div></div>
+              <div class="sp-step"><div class="sp-sdot" style="background:var(--hausverwalter);"></div><div><div class="sp-sname">Mietgewinn-Prognose</div><div class="sp-ssub">Gewinn/Verlust mit AfA, Zinsen, echten Daten</div></div><div class="sp-stime">Geplant</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE: Fewo-Manager -->
+    <div class="tool-slide" id="slide-fewo">
+      <div class="sp-inner">
+        <div>
+          <div class="sp-tag" style="color:var(--fewo);">Tool 05 — Jetzt verfügbar</div>
+          <h2 class="sp-h">Sam,<br><span style="color:var(--fewo);">der Fewo-Manager</span></h2>
+          <p class="sp-b">Ferienwohnungen professionell verwalten — Buchungen, Portale, Buchhaltung und iCal-Sync. Alles an einem Ort fuer Vermieter mit mehreren Objekten.</p>
+          <a href="https://fewo-manager.onrender.com" target="_blank" class="btn-l" style="background:var(--fewo);">Fewo-Manager oeffnen</a>
+        </div>
+        <div>
+          <div class="sp-card">
+            <div class="sp-card-t">Features</div>
+            <div>
+              <div class="sp-step active"><div class="sp-sdot" style="background:var(--fewo);"></div><div><div class="sp-sname">Multi-Kanal Buchungen</div><div class="sp-ssub">Airbnb, Booking.com, FeWo-direkt, Direktbuchungen</div></div><div class="sp-stime">Live</div></div>
+              <div class="sp-step"><div class="sp-sdot" style="background:var(--fewo);"></div><div><div class="sp-sname">iCal-Synchronisation</div><div class="sp-ssub">Automatischer Abgleich mit Buchungsportalen</div></div><div class="sp-stime">Live</div></div>
+              <div class="sp-step"><div class="sp-sdot" style="background:var(--fewo);"></div><div><div class="sp-sname">Buchhaltung & Matching</div><div class="sp-ssub">Bankbewegungen mit Buchungen abgleichen</div></div><div class="sp-stime">Live</div></div>
+              <div class="sp-step"><div class="sp-sdot" style="background:var(--fewo);"></div><div><div class="sp-sname">Glaeubigerregeln</div><div class="sp-ssub">Ausgaben automatisch zuordnen, Verteilungsschluessel</div></div><div class="sp-stime">Live</div></div>
+              <div class="sp-step"><div class="sp-sdot" style="background:var(--fewo);"></div><div><div class="sp-sname">DATEV-Export</div><div class="sp-ssub">Monatsweise Buchungsdaten fuer den Steuerberater</div></div><div class="sp-stime">Live</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- TRUST -->
+<section class="trust">
+  <div class="trust-inner reveal">
+    <div class="stag" style="justify-content:center;"><span style="display:block;width:20px;height:2px;background:var(--immo);border-radius:1px;"></span>Vertrauen &amp; Grundsätze</div>
+    <div class="tq">„Sam hat kein Produkt zu verkaufen. Keine Meinung darüber, was du tun sollst. <span>Nur eine Struktur</span> — und die Überzeugung, dass du klar denken kannst."</div>
+    <div class="ta">— Sam · Grundprinzip</div>
+  </div>
+  <div class="tgrid">
+    <div class="titem reveal">
+      <div class="ti-ic ti-i"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+      <div class="ti-t">Keine Beratung, keine Haftung</div>
+      <p class="ti-b">Sam ist kein lizenzierter Berater. Es ist ein Denkwerkzeug. Ergebnisse sollten bei wichtigen Entscheidungen immer mit Fachleuten überprüft werden.</p>
+    </div>
+    <div class="titem reveal rd1">
+      <div class="ti-ic ti-g"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></div>
+      <div class="ti-t">Deine Zahlen bleiben deine</div>
+      <p class="ti-b">Keine Daten werden geteilt, verkauft oder für Targeting genutzt. Sam hat kein Interesse an deinen Finanzdaten über die Sitzung hinaus.</p>
+    </div>
+    <div class="titem reveal rd2">
+      <div class="ti-ic ti-s"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+      <div class="ti-t">Keine Produkte, keine Provisionen</div>
+      <p class="ti-b">Sam vergleicht, empfiehlt oder verlinkt keine Finanzprodukte. Keine Partnerschaften. Kein Anreiz, dich irgendwohin zu lenken.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <div class="cta-in reveal">
+    <h2 class="cta-h">Starte mit<br><span>Sam.</span></h2>
+    <p class="cta-b">Kein Konto erforderlich. Keine Datenerhebung. Nur eine klare Struktur fuer die wichtigsten Entscheidungen deines Lebens.</p>
+    <a href="#" class="btn-l" id="ctaBtn" onclick="window.location.href='https://immowert.onrender.com';return false;">Jetzt kostenlos starten</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="fb">Sam<span> · Life Coach</span></div>
+    <div class="fn">Entscheidungs-Support-System · Keine Finanzberatung</div>
+  </div>
+  <ul class="flinks">
+    <li><a href="#">So funktioniert's</a></li>
+    <li><a href="#">Sams Welten</a></li>
+    <li><a href="#">Über Sam</a></li>
+    <li><a href="#">Datenschutz</a></li>
+    <li><a href="#">Kontakt</a></li>
+  </ul>
+</footer>
+
+<!-- Login Modal entfernt — Auth laeuft auf immowert.onrender.com -->
+
+<script>
+// Nav
+const nav = document.getElementById('nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>20));
+
+// Reveal
+const revs = document.querySelectorAll('.reveal');
+const obs = new IntersectionObserver(es=>{
+  es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});
+},{threshold:0.1,rootMargin:'0px 0px -50px 0px'});
+revs.forEach(el=>obs.observe(el));
+
+// Slider
+const track = document.getElementById('sliderTrack');
+const dots = document.querySelectorAll('.sdot');
+const CW = 284+16;
+let idx=0;
+
+function goTo(i){
+  idx=Math.max(0,Math.min(i,4));
+  track.scrollTo({left:idx*CW,behavior:'smooth'});
+  dots.forEach((d,j)=>d.classList.toggle('active',j===idx));
+}
+
+document.getElementById('sNext').onclick=()=>goTo(idx+1);
+document.getElementById('sPrev').onclick=()=>goTo(idx-1);
+dots.forEach(d=>d.addEventListener('click',()=>goTo(+d.dataset.i)));
+
+let dn=false,sx,sl,dragged=false;
+track.addEventListener('mousedown',e=>{dn=true;dragged=false;sx=e.pageX-track.offsetLeft;sl=track.scrollLeft;});
+window.addEventListener('mouseup',()=>{dn=false;});
+track.addEventListener('mousemove',e=>{
+  if(!dn)return;e.preventDefault();dragged=true;
+  track.scrollLeft=sl-(e.pageX-track.offsetLeft-sx)*1.5;
+});
+track.addEventListener('click',e=>{if(dragged){e.stopPropagation();e.preventDefault();}},{capture:true});
+track.addEventListener('scroll',()=>{
+  const ni=Math.round(track.scrollLeft/CW);
+  dots.forEach((d,j)=>d.classList.toggle('active',j===ni));
+  idx=ni;
+});
+
+// Tool Detail Slider
+function showToolSlide(tool) {
+  document.querySelectorAll('.tool-slide').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tool-tab').forEach(t => t.classList.remove('active'));
+  const slide = document.getElementById('slide-' + tool);
+  if (slide) slide.classList.add('active');
+  const tab = document.querySelector(`.tool-tab[data-tool="${tool}"]`);
+  if (tab) tab.classList.add('active');
+}
+
+// Auth entfernt — laeuft auf immowert.onrender.com
+</script>
 </body>
 </html>
